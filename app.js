@@ -1,6 +1,7 @@
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
@@ -8,6 +9,9 @@ const routes = require("./routes/index");
 const { json } = require("express");
 
 const app = express();
+
+app.disable("x-powered-by");
+app.use(cors());
 
 app.use(logger("dev"));
 app.use(express.json());
