@@ -29,7 +29,14 @@ service.getList = () => {
 };
 
 service.getDetails = (id) => {
-  return mockupList[id] ? mockupList[id] : { error: "Not available" };
+  return mockupList[id]
+    ? mockupList[id]
+    : {
+        error: {
+          message: "Not available",
+          status: 404,
+        },
+      };
 };
 
 service.postDinner = (request) => {
