@@ -29,8 +29,9 @@ service.getList = () => {
 };
 
 service.getDetails = (id) => {
-  return mockupList[id]
-    ? mockupList[id]
+  const indexedId = parseInt(id, 10) - 1;
+  return mockupList[indexedId]
+    ? mockupList[indexedId]
     : {
         error: {
           message: "Not available",
