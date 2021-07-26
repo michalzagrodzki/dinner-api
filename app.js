@@ -4,7 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
-const indexRouter = require("./routes/index");
+const routes = require("./routes/index");
 const dinners_router = require("./routes/dinners");
 
 const app = express();
@@ -14,8 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use("/", indexRouter);
-app.use("/api/dinners", dinners_router);
+app.use(routes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
