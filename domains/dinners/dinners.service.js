@@ -40,8 +40,20 @@ service.getDetails = (id) => {
       };
 };
 
-service.postDinner = (request) => {
-  return [];
+service.postDinner = (id) => {
+  const indexedId = parseInt(id, 10) - 1;
+  return mockupList[indexedId]
+    ? mockupList[indexedId]
+    : {
+        error: {
+          message: "Not available",
+          status: 404,
+        },
+      };
+};
+
+service.postCustomDinner = (request) => {
+  return {};
 };
 
 service.deleteDinner = (id) => {
