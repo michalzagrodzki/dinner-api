@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
 const routes = require("./routes/index");
-const dinners_router = require("./routes/dinners");
 
 const app = express();
 

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const dinners = require("./../domains/dinners/dinners.controller");
+const dinners = require("./dinners.controller");
 
 router.get("/", dinners.list);
 router.get("/details/:id", dinners.details);
