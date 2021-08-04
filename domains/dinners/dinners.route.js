@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-const dinners = require("./dinners.controller");
+// Controllers
+const dinnersController = require("./dinners.controller");
+// Validators
+const { dinnersValidator } = require("./domains/dinners/dinners.middleware");
 
-router.get("/", dinners.list);
-router.get("/details/:id", dinners.details);
-router.post("/order/:id", dinners.post);
-router.post("/custom/order", dinners.postCustom);
+router.get("/", dinnersController.list);
+router.get("/details/:id", dinnersValidator.get, dinnersController.details);
+router.post("/order/:id", dinnersController.post);
+router.post("/custom/order", dinnersController.postCustom);
 
 module.exports = router;
