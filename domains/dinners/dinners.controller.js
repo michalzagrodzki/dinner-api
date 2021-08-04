@@ -12,7 +12,7 @@ dinners.list = async (req, res, next) => {
   }
 };
 
-dinners.details = async (req, res, next) => {
+dinners.get = async (req, res, next) => {
   try {
     const response = await service.getDetails(req.params.id);
     if (response.error) throw response.error;

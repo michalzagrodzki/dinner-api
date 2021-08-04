@@ -7,7 +7,7 @@ const dinnersController = require("./dinners.controller");
 const { dinnersValidator } = require("./domains/dinners/dinners.middleware");
 
 router.get("/", dinnersController.list);
-router.get("/details/:id", dinnersValidator.get, dinnersController.details);
+router.get("/details/:id", dinnersValidator.get, dinnersController.get);
 router.post("/order/:id", dinnersController.post);
 router.post("/custom/order", dinnersController.postCustom);
 
