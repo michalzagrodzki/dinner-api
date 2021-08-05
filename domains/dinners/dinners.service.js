@@ -1,4 +1,4 @@
-const { Dinner } = require("./dinner.model");
+const Dinner = require("./dinner.model");
 
 const service = {};
 
