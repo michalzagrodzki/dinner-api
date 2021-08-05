@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const dinnerSchema = new Schema({
   title: { type: String, required: true },
-  price: { type: Number, required: true, min: 0 },
+  price: { type: String, required: true, min: 0 },
   weight: { type: Number, required: true, min: 0 },
   calories: { type: Number, required: true, min: 0 },
 });
