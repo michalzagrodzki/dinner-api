@@ -56,6 +56,9 @@ jspm_packages/
 .env.test
 .env.production
 
+# Visual studio
+.DS_Store
+
 # Serverless directories
 .serverless/
 
