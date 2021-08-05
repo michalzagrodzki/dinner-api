@@ -3,11 +3,16 @@ const router = express.Router();
 
 const info = require("./info");
 const dinners = require("./../domains/dinners/dinners.route");
+const ingredients = require("../domains/ingredients/ingredients.route");
 
 const domainRoutes = [
   {
     path: "/dinners",
     domain: dinners,
+  },
+  {
+    path: "/ingredients",
+    domain: ingredients,
   },
 ];
 
