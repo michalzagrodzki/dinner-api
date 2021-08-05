@@ -34,16 +34,12 @@ service.getList = async () => {
   return response;
 };
 
-service.getDetails = (id) => {
-  const indexedId = parseInt(id, 10) - 1;
-  return mockupList[indexedId]
-    ? mockupList[indexedId]
-    : {
-        error: {
-          message: "Not available",
-          status: 404,
-        },
-      };
+service.getDetails = async (id) => {
+  const query = Dinner.findById(id, function (err) {
+    if (err) return err;
+  });
+  const response = await query;
+  return response;
 };
 
 service.postDinner = (id) => {
