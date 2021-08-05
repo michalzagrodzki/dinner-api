@@ -1,3 +1,5 @@
+const { noSpecialCharacters } = require("./../../utils/middlewares");
+
 const is = {
   missingParams: (payload) => {
     if (!payload.params) return true;
@@ -16,12 +18,8 @@ const is = {
 
 const validate = {
   id: (payload) => {
-    noAlphaCharacters = (payload) => {
-      regex = new RegExp(/^[0-9]+$/g);
-      return regex.test(payload);
-    };
-    if (noAlphaCharacters(payload)) return;
-    throw "Only numeric characters are allowed in id";
+    if (noSpecialCharacters(payload)) return;
+    throw "Only alphanumeric characters are allowed in id";
   },
 };
 
