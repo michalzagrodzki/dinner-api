@@ -1,3 +1,5 @@
+const { Dinner } = require("./dinner.model");
+
 const service = {};
 
 const mockupList = [
@@ -24,8 +26,12 @@ const mockupList = [
   },
 ];
 
-service.getList = () => {
-  return mockupList;
+service.getList = async () => {
+  const query = Dinner.find(function (err) {
+    if (err) return err;
+  });
+  const response = await query;
+  return response;
 };
 
 service.getDetails = (id) => {
