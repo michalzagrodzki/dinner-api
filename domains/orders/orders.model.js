@@ -13,6 +13,6 @@ const orderSchema = new Schema({
   ingredients: [{ type: Schema.Types.ObjectId, ref: "Ingredient" }],
 });
 
-const Dinner = mongoose.model("Order", orderSchema);
+const Order = mongoose.model("Order", orderSchema);
 
-module.exports = Dinner;
+module.exports = Order;
