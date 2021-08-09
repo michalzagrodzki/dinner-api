@@ -4,6 +4,7 @@ const router = express.Router();
 const info = require("./info");
 const dinners = require("./../domains/dinners/dinners.route");
 const ingredients = require("../domains/ingredients/ingredients.route");
+const orders = require("../domains/orders/orders.route");
 
 const domainRoutes = [
   {
@@ -13,6 +14,10 @@ const domainRoutes = [
   {
     path: "/ingredients",
     domain: ingredients,
+  },
+  {
+    path: "/orders",
+    domain: orders,
   },
 ];
 
