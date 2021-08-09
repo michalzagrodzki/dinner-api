@@ -9,6 +9,10 @@ const { ordersValidator } = require("./orders.middleware");
 router.get("/", ordersController.list);
 router.get("/details/:id", ordersValidator.get, ordersController.get);
 router.post("/order/:id", ordersValidator.post, ordersController.post);
-router.post("/custom/order", ordersValidator.post, ordersController.postCustom);
+router.post(
+  "/custom/order",
+  ordersValidator.postCustom,
+  ordersController.postCustom
+);
 
 module.exports = router;

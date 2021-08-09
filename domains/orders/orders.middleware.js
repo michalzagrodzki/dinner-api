@@ -1,5 +1,17 @@
 const { noSpecialCharacters } = require("./../../utils/middlewares");
 
+function undefinedValue(value) {
+  if (value === undefined || value === null) return true;
+}
+
+function emptyValue(value) {
+  if (value !== "") return true;
+}
+
+function emptyIngredients(list) {
+  if (list.length === 0) return true;
+}
+
 const is = {
   missingParams: (payload) => {
     if (!payload.params) return true;
@@ -11,7 +23,9 @@ const is = {
     if (!payload.body) return true;
   },
   emptyBody: (payload) => {
-    if (!payload.body) return true;
+    const { ingredients } = payload.body;
+    if (ingredients && ingredients.length !== 0) return false;
+    return true;
   },
 };
 
@@ -19,6 +33,16 @@ const validate = {
   id: (payload) => {
     if (noSpecialCharacters(payload)) return;
     throw "Only alphanumeric characters are allowed in id";
+  },
+  request: (payload) => {
+    const { title, dinner_id, price, calories, ingredients } = payload;
+    if (undefinedValue(title)) throw "Missing title";
+    if (emptyValue(title)) throw "Empty title";
+    if (undefinedValue(dinner_id)) throw "Missing dinner id";
+    if (undefinedValue(price)) throw "Missing price";
+    if (undefinedValue(calories)) throw "Missing calories";
+    if (emptyIngredients(ingredients)) throw "Missing ingredients";
+    return payload;
   },
 };
 
@@ -38,7 +62,11 @@ const ordersValidator = {
     try {
       if (is.missingParams(req)) throw "Missing params";
       if (is.emptyParams(req)) throw "Id is empty";
+      if (is.missingBody(req)) throw "Missing request body";
+      if (is.emptyBody(req)) throw "Request body is empty";
+
       validate.id(req.params.id);
+      validate.request(req.body);
 
       next();
     } catch (error) {
@@ -49,6 +77,8 @@ const ordersValidator = {
     try {
       if (is.missingBody(req)) throw "Missing request body";
       if (is.emptyBody(req)) throw "Request body is empty";
+
+      validate.body(req.body);
 
       next();
     } catch (error) {
