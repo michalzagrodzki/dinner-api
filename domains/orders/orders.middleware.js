@@ -60,25 +60,10 @@ const ordersValidator = {
   },
   post: function (req, res, next) {
     try {
-      if (is.missingParams(req)) throw "Missing params";
-      if (is.emptyParams(req)) throw "Id is empty";
       if (is.missingBody(req)) throw "Missing request body";
       if (is.emptyBody(req)) throw "Request body is empty";
 
-      validate.id(req.params.id);
       validate.request(req.body);
-
-      next();
-    } catch (error) {
-      res.status(400).json({ error: error });
-    }
-  },
-  postCustom: function (req, res, next) {
-    try {
-      if (is.missingBody(req)) throw "Missing request body";
-      if (is.emptyBody(req)) throw "Request body is empty";
-
-      validate.body(req.body);
 
       next();
     } catch (error) {

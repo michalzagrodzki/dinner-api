@@ -19,12 +19,9 @@ service.getDetails = async (id) => {
 };
 
 service.postOrder = async (payload) => {
+  console.log("posting orderd");
+  console.log(payload);
   const response = "post order;";
-  return response;
-};
-
-service.postCustomOrder = async (payload) => {
-  const response = "post custom order;";
   return response;
 };
 
