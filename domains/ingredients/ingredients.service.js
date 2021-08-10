@@ -10,6 +10,19 @@ service.getList = async () => {
   return response;
 };
 
+service.getSelected = async (list) => {
+  const query = Ingredient.find(
+    {
+      _id: { $in: list },
+    },
+    function (err) {
+      if (err) return err;
+    }
+  );
+  const response = await query;
+  return response;
+};
+
 service.getDetails = async (id) => {
   const query = Ingredient.findById(id, function (err) {
     if (err) return err;
