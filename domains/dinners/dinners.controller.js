@@ -1,5 +1,6 @@
 const service = require("./dinners.service");
 const ingredientsService = require("./../ingredients/ingredients.service");
+const { parseIngredients } = require("./../../utils/helpers");
 
 const dinners = {};
 
@@ -18,8 +19,9 @@ dinners.get = async (req, res, next) => {
     const response = await service.getDetails(id);
     const { ingredients } = response;
     const ingredientsList = await ingredientsService.getSelected(ingredients);
-    response.ingredients = ingredientsList;
-    res.status(200).json(response);
+    const parsedResponse = { ...response._doc };
+    parsedResponse.ingredients = parseIngredients(ingredientsList);
+    res.status(200).json(parsedResponse);
   } catch (error) {
     next(error);
   }
