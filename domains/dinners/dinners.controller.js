@@ -17,10 +17,12 @@ dinners.get = async (req, res, next) => {
   try {
     const { id } = req.params;
     const response = await service.getDetails(id);
-    const { ingredients } = response;
-    const ingredientsList = await ingredientsService.getSelected(ingredients);
     const parsedResponse = { ...response._doc };
-    parsedResponse.ingredients = parseIngredients(ingredientsList);
+    const { ingredients } = parsedResponse;
+    if (ingredients.length > 0) {
+      const ingredientsList = await ingredientsService.getSelected(ingredients);
+      parsedResponse.ingredients = parseIngredients(ingredientsList);
+    }
     res.status(200).json(parsedResponse);
   } catch (error) {
     next(error);
