@@ -5,7 +5,7 @@ function undefinedValue(value) {
 }
 
 function emptyValue(value) {
-  if (value !== "") return true;
+  if (value === "") return true;
 }
 
 function emptyIngredients(list) {
@@ -62,7 +62,6 @@ const ordersValidator = {
     try {
       if (is.missingBody(req)) throw "Missing request body";
       if (is.emptyBody(req)) throw "Request body is empty";
-
       validate.request(req.body);
 
       next();
