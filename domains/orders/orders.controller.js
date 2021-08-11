@@ -26,9 +26,9 @@ orders.post = async (req, res, next) => {
     const {
       title,
       dinner_id,
-      client_name,
-      client_phone,
-      client_email,
+      name: client_name,
+      phone: client_phone,
+      email: client_email,
       price,
       calories,
       weight,
@@ -36,7 +36,7 @@ orders.post = async (req, res, next) => {
     } = req.body;
     const request = {
       title,
-      dinner_id,
+      dinner_id: dinner_id || null,
       client_name: client_name || "default client",
       client_phone: client_phone || "no phone provided",
       client_email: client_email || "no email provided",
