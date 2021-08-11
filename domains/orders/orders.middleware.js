@@ -38,8 +38,6 @@ const validate = {
     const { title, dinner_id, price, calories, ingredients } = payload;
     if (undefinedValue(title)) throw "Missing title";
     if (emptyValue(title)) throw "Empty title";
-    if (undefinedValue(dinner_id)) throw "Missing dinner id";
-    if (undefinedValue(price)) throw "Missing price";
     if (undefinedValue(calories)) throw "Missing calories";
     if (emptyIngredients(ingredients)) throw "Missing ingredients";
     return payload;
