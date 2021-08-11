@@ -1,4 +1,6 @@
 const service = require("./orders.service");
+const { parseIngredients } = require("./../../utils/helpers");
+const { OMITTED_ORDER_INGREDIENTS_KEYS } = require("./../../utils/constants");
 
 const orders = {};
 
@@ -34,16 +36,23 @@ orders.post = async (req, res, next) => {
       weight,
       ingredients,
     } = req.body;
+    const parsedIngredients = parseIngredients(
+      ingredients,
+      OMITTED_ORDER_INGREDIENTS_KEYS
+    );
+    const evaluatedPrice = evaluatePrice(price, parsedIngredients);
+    const parseCalories = parseInt(calories, 10);
+    const parseWeight = parseInt(weight, 10);
     const request = {
       title,
       dinner_id: dinner_id || null,
       client_name: client_name || "default client",
       client_phone: client_phone || "no phone provided",
       client_email: client_email || "no email provided",
-      price,
-      calories,
-      weight,
-      ingredients,
+      evaluatedPrice,
+      parseCalories,
+      parseWeight,
+      parsedIngredients,
     };
     const response = service.postOrder(request);
     res.status(200).json(response);

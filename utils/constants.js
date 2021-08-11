@@ -1,3 +1,4 @@
 const OMITTED_INGREDIENTS_KEYS = ["__v", "_id"];
+const OMITTED_ORDER_INGREDIENTS_KEYS = ["__v", "selected"];
 
-module.exports = { OMITTED_INGREDIENTS_KEYS };
+module.exports = { OMITTED_INGREDIENTS_KEYS, OMITTED_ORDER_INGREDIENTS_KEYS };

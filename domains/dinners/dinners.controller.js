@@ -1,6 +1,7 @@
 const service = require("./dinners.service");
 const ingredientsService = require("./../ingredients/ingredients.service");
 const { parseIngredients } = require("./../../utils/helpers");
+const { OMITTED_INGREDIENTS_KEYS } = require("./../../utils/constants");
 
 const dinners = {};
 
@@ -21,7 +22,10 @@ dinners.get = async (req, res, next) => {
     const { ingredients } = parsedResponse;
     if (ingredients.length > 0) {
       const ingredientsList = await ingredientsService.getSelected(ingredients);
-      parsedResponse.ingredients = parseIngredients(ingredientsList);
+      parsedResponse.ingredients = parseIngredients(
+        ingredientsList,
+        OMITTED_INGREDIENTS_KEYS
+      );
     }
     res.status(200).json(parsedResponse);
   } catch (error) {
