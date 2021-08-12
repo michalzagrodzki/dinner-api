@@ -21,4 +21,4 @@ evaluatePrice = (price, ingredients) => {
   return sumPrice.toString();
 };
 
-module.exports = { parseIngredients };
+module.exports = { parseIngredients, evaluatePrice };

@@ -1,5 +1,5 @@
 const service = require("./orders.service");
-const { parseIngredients } = require("./../../utils/helpers");
+const { parseIngredients, evaluatePrice } = require("./../../utils/helpers");
 const { OMITTED_ORDER_INGREDIENTS_KEYS } = require("./../../utils/constants");
 
 const orders = {};
