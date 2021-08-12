@@ -1,20 +1,4 @@
-const { noSpecialCharacters } = require("./../../utils/middlewares");
-
-const is = {
-  missingParams: (payload) => {
-    if (!payload.params) return true;
-  },
-  emptyParams: (payload) => {
-    if (!payload.params.id && payload.params.id === "") return true;
-  },
-  missingBody: (payload) => {
-    if (!payload.body) return true;
-  },
-  emptyBody: (payload) => {
-    if (!payload.body.ingredients && payload.body.ingredients.length === 0)
-      return true;
-  },
-};
+const { noSpecialCharacters, is } = require("./../../utils/middlewares");
 
 const validate = {
   id: (payload) => {

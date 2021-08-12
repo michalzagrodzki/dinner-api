@@ -1,33 +1,4 @@
-const { noSpecialCharacters } = require("./../../utils/middlewares");
-
-function undefinedValue(value) {
-  if (value === undefined || value === null) return true;
-}
-
-function emptyValue(value) {
-  if (value === "") return true;
-}
-
-function emptyIngredients(list) {
-  if (list.length === 0) return true;
-}
-
-const is = {
-  missingParams: (payload) => {
-    if (!payload.params) return true;
-  },
-  emptyParams: (payload) => {
-    if (!payload.params.id && payload.params.id === "") return true;
-  },
-  missingBody: (payload) => {
-    if (!payload.body) return true;
-  },
-  emptyBody: (payload) => {
-    const { ingredients } = payload.body;
-    if (ingredients && ingredients.length !== 0) return false;
-    return true;
-  },
-};
+const { noSpecialCharacters, is } = require("./../../utils/middlewares");
 
 const validate = {
   id: (payload) => {
@@ -35,11 +6,11 @@ const validate = {
     throw "Only alphanumeric characters are allowed in id";
   },
   request: (payload) => {
-    const { title, dinner_id, price, calories, ingredients } = payload;
-    if (undefinedValue(title)) throw "Missing title";
-    if (emptyValue(title)) throw "Empty title";
-    if (undefinedValue(calories)) throw "Missing calories";
-    if (emptyIngredients(ingredients)) throw "Missing ingredients";
+    const { title, calories, ingredients } = payload;
+    if (is.undefinedValue(title)) throw "Missing title";
+    if (is.emptyValue(title)) throw "Empty title";
+    if (is.undefinedValue(calories)) throw "Missing calories";
+    if (is.emptyIngredients(ingredients)) throw "Missing ingredients";
     return payload;
   },
 };
