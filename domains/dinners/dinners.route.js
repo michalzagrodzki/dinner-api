@@ -5,6 +5,12 @@ const router = express.Router();
 const dinnersController = require("./dinners.controller");
 // Validators
 const { dinnersValidator } = require("./dinners.middleware");
+
+router.get("/", dinnersController.list);
+router.get("/details/:id", dinnersValidator.get, dinnersController.get);
+
+module.exports = router;
+
 /**
  * @swagger
  * components:
@@ -56,7 +62,3 @@ const { dinnersValidator } = require("./dinners.middleware");
  *                   items:
  *                     $ref: '#/components/schemas/Dinner'
  */
-router.get("/", dinnersController.list);
-router.get("/details/:id", dinnersValidator.get, dinnersController.get);
-
-module.exports = router;
