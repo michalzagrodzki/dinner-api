@@ -33,3 +33,44 @@ Run project:
 ```npm
 npm run start
 ```
+
+## Project models
+
+Project has three following models: Dinner, Ingredients, Orders.
+
+Dinner:
+
+```javascript
+const dinnerSchema = new Schema({
+  title: { type: String, required: true },
+  price: { type: String, required: true, min: 0 },
+  weight: { type: Number, required: true, min: 0 },
+  calories: { type: Number, required: true, min: 0 },
+  ingredients: [{ type: Schema.Types.ObjectId, ref: "Ingredient" }],
+```
+
+Orders:
+
+```javascript
+const orderSchema = new Schema({
+  title: { type: String },
+  dinner_id: { type: Schema.Types.ObjectId, ref: "Dinner" },
+  client_name: { type: String, required: true },
+  client_phone: { type: String, required: true },
+  client_email: { type: String },
+  price: { type: String, required: true, min: 0 },
+  calories: { type: Number, required: true, min: 0 },
+  weight: { type: Number },
+  ingredients: [{ type: Schema.Types.ObjectId, ref: "Ingredient" }],
+});
+```
+
+Ingredients:
+
+```javascript
+const ingredientSchema = new Schema({
+  name: { type: String, required: true },
+  price: { type: String, required: true, min: 0 },
+  calories: { type: Number, required: true, min: 0 },
+});
+```
