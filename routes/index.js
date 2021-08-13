@@ -5,6 +5,7 @@ const info = require("./info");
 const dinners = require("./../domains/dinners/dinners.route");
 const ingredients = require("../domains/ingredients/ingredients.route");
 const orders = require("../domains/orders/orders.route");
+const api_documentation = require("../domains/docs/docs.route");
 
 const domainRoutes = [
   {
@@ -18,6 +19,10 @@ const domainRoutes = [
   {
     path: "/orders",
     domain: orders,
+  },
+  {
+    path: "/api-docs",
+    domain: api_documentation,
   },
 ];
 
