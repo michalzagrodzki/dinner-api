@@ -36,9 +36,9 @@ npm run start
 
 ## Project models
 
-Project has three following models: Dinner, Ingredients, Orders.
+Project has three following models: Dinners, Ingredients, Orders.
 
-Dinner:
+Dinners:
 
 ```javascript
 const dinnerSchema = new Schema({
