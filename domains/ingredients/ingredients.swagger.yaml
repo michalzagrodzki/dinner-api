@@ -1,0 +1,67 @@
+components:
+  schemas:
+    NewIngredient:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: The user's name.
+          example: John John
+    Ingredient:
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: integer
+              description: The ingredient ID.
+              example: 0
+        - $ref: '#/components/schemas/Ingredient'
+
+tags:
+  name: Ingredients
+  description: API for ingredients in the system.
+
+/ingredients:
+  get:
+    summary: Retrieve a list of Ingredients.
+    tags: [Ingredients]
+    description: Retrieve a list of ingredients from Dinners API.
+    responses:
+      200:
+        description: Ok.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Ingredient'
+ 
+/ingredients/details/{id}:
+  get:
+    summary: Retrieve details of selected Ingredient.
+    tags: [Ingredients]
+    description: Retrieve details of selected ingredient from Dinners API.
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string*         
+          description: Ingredient id
+  responses:
+    200:
+      description: Ok.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ingredient'

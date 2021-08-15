@@ -6,9 +6,9 @@ const definition = require("./docs.definition");
 const swaggerSpec = swaggerJsdoc({
   definition,
   apis: [
-    "./domains/dinners/dinners.route.js",
-    "./domains/ingredients/ingredients.route.js",
-    "./domains/orders/orders.route.js",
+    "./domains/dinners/dinners.swagger.yaml",
+    "./domains/ingredients/ingredients.swagger.yaml",
+    "./domains/orders/orders.swagger.yaml",
   ],
 });
 

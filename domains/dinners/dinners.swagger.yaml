@@ -1,0 +1,67 @@
+components:
+  schemas:
+    NewDinner:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: The user's name.
+          example: John John
+    Dinner:
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: integer
+              description: The dinner ID.
+              example: 0
+        - $ref: '#/components/schemas/Dinner'
+
+tags:
+  name: Dinners
+  description: API for dinners in the system.
+
+/dinners:
+  get:
+    summary: Retrieve a list of Dinners.
+    tags: [Dinners]
+    description: Retrieve a list of dinners from Dinners API.
+    responses:
+      200:
+        description: Ok.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Dinner'
+ 
+/dinners/details/{id}:
+  get:
+    summary: Retrieve details of selected Dinner.
+    tags: [Dinners]
+    description: Retrieve details of selected dinner from Dinners API.
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string*         
+          description: Dinner id
+  responses:
+    200:
+      description: Ok.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dinner'
