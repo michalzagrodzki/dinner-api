@@ -2,8 +2,9 @@ require("dotenv").config();
 const app = require("./app");
 const debug = require("debug")("node-dinner-api:server");
 const http = require("http");
+const { DEFAULT_PORT } = require("./utils/constants");
 
-const port = process.env.PORT || "2000";
+const port = process.env.PORT || DEFAULT_PORT;
 app.set("port", port);
 
 const server = http.createServer(app);

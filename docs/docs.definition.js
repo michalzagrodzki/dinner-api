@@ -1,8 +1,10 @@
+const { DEFAULT_PORT } = require("./../utils/constants");
+const { version } = require("./../package.json");
 const definition = {
   openapi: "3.0.0.",
   info: {
     title: "Dinners Express REST API",
-    version: "1.0.0.",
+    version,
     description: "REST API for serving and ordering dinners",
     license: {
       name: "MIT",
@@ -14,7 +16,7 @@ const definition = {
   },
   servers: [
     {
-      url: "http://localhost:2000/api/v1",
+      url: `http://localhost:${DEFAULT_PORT}/api/v1`,
       description: "Development server",
     },
   ],
