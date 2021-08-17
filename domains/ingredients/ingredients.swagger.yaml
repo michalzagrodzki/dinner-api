@@ -1,67 +1,90 @@
+openapi: 3.0.0
 components:
   schemas:
     NewIngredient:
       type: object
       required:
         - name
+        - price
+        - calories
       properties:
         name:
           type: string
-          description: The user's name.
-          example: John John
+          description: The ingredient's name.
+          example: Apple
+        price:
+          type: string
+          description: The ingredient's price.
+          example: 2.05
+        calories:
+          type: number
+          description: The ingredient's calories.
+          example: 125
     Ingredient:
       allOf:
         - type: object
           properties:
-            id:
-              type: integer
-              description: The ingredient ID.
-              example: 0
+            _id:
+              type: string
+              description: Ingredient's id.
+              example: "610d16b6535ec599fa0a63a0"
+            name:
+              type: string
+              description: The ingredient's name.
+              example: Apple
+            price:
+              type: string
+              description: The ingredient's price.
+              example: 2.05
+            calories:
+              type: number
+              description: The ingredient's calories.
+              example: 125
         - $ref: '#/components/schemas/Ingredient'
-
-tags:
-  name: Ingredients
-  description: API for ingredients in the system.
-
-/ingredients:
-  get:
-    summary: Retrieve a list of Ingredients.
-    tags: [Ingredients]
-    description: Retrieve a list of ingredients from Dinners API.
-    responses:
-      200:
-        description: Ok.
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Ingredient'
- 
-/ingredients/details/{id}:
-  get:
-    summary: Retrieve details of selected Ingredient.
-    tags: [Ingredients]
-    description: Retrieve details of selected ingredient from Dinners API.
-    parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string*         
-          description: Ingredient id
-  responses:
-    200:
-      description: Ok.
-      content:
-        application/json:
+tags: [
+    {
+      name: Ingredient,
+      description: API for ingredients in the system.
+    }
+  ]
+paths:
+  /ingredients:
+    get:
+      summary: Retrieve a list of Ingredients.
+      tags: 
+      - Ingredient
+      description: Retrieve a list of ingredients from Dinners API.
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Ingredient'
+  /ingredients/details/{ingredientId}:
+    get:
+      summary: Retrieve details of selected Ingredient.
+      tags: 
+      - Ingredient
+      description: Retrieve details of selected ingredient from Dinners API.
+      parameters:
+        - name: ingredientId
+          required: true
+          in: path
           schema:
-            type: object
-            properties:
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Ingredient'
+            type: string
+            description: Ingredient id
+            example: "610d16b6535ec599fa0a63a0"
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingredient'
+                  

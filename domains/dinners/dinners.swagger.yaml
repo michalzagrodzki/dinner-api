@@ -1,67 +1,166 @@
+openapi: 3.0.0
 components:
   schemas:
     NewDinner:
       type: object
       required:
-        - name
+        - title
+        - price
+        - weight
+        - calories
+        - ingredients
       properties:
-        name:
+        _id:
           type: string
-          description: The user's name.
-          example: John John
+          description: Dinner's id.
+          example: "611273f32335860890b58056"
+        title:
+          type: string
+          description: Dinner's name.
+          example: Pasta
+        price:
+          type: string
+          description: Price of single dinner.
+          example: 12.51
+        weight:
+          type: number
+          description: Weight of single dinner.
+          example: Pasta
+        calories:
+          type: number
+          description: Calories of single dinner.
+          example: 250
+        ingredients:
+          type: array
+          description: List of ingredients related to Dinner.
+          items: {
+                  type: string
+                }
+          example: ["797ede4", "8fa094d", "a0a63a0"]
+    Dinners:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              description: Dinner's id.
+              example: "611273f32335860890b58056"
+            title:
+              type: string
+              description: Dinner's name.
+              example: Pasta
+            price:
+              type: string
+              description: Price of single dinner.
+              example: 12.51
+            weight:
+              type: number
+              description: Weight of single dinner.
+              example: Pasta
+            calories:
+              type: number
+              description: Calories of single dinner.
+              example: 250
+            ingredients:
+              type: array
+              description: List of ingredients related to Dinner.
+              items: {
+                  type: string
+                }
+              example: ["797ede4", "8fa094d", "a0a63a0"]
+        - $ref: '#/components/schemas/Dinners'
     Dinner:
       allOf:
         - type: object
           properties:
-            id:
-              type: integer
-              description: The dinner ID.
-              example: 0
+            _id:
+              type: string
+              description: Dinner's id.
+              example: "611273f32335860890b58056"
+            title:
+              type: string
+              description: Dinner's name.
+              example: Pasta
+            price:
+              type: string
+              description: Price of single dinner.
+              example: 12.51
+            weight:
+              type: number
+              description: Weight of single dinner.
+              example: Pasta
+            calories:
+              type: number
+              description: Calories of single dinner.
+              example: 250
+            ingredients:
+              type: array
+              description: List of ingredients related to Dinner.
+              items: {
+                  type: string
+                }
+              example: [
+                {
+                  "name": "eggs",
+                  "price": "1.48",
+                  "calories": 155
+                },
+                {
+                  "name": "flour",
+                  "price": "1.02",
+                  "calories": 364
+                },
+                {
+                  "name": "olive oil",
+                  "price": "3.89",
+                  "calories": 884
+                }
+              ]
         - $ref: '#/components/schemas/Dinner'
-
-tags:
-  name: Dinners
-  description: API for dinners in the system.
-
-/dinners:
-  get:
-    summary: Retrieve a list of Dinners.
-    tags: [Dinners]
-    description: Retrieve a list of dinners from Dinners API.
-    responses:
-      200:
-        description: Ok.
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Dinner'
- 
-/dinners/details/{id}:
-  get:
-    summary: Retrieve details of selected Dinner.
-    tags: [Dinners]
-    description: Retrieve details of selected dinner from Dinners API.
-    parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string*         
-          description: Dinner id
-  responses:
-    200:
-      description: Ok.
-      content:
-        application/json:
+tags: [
+    {
+      name: Dinner,
+      description: API for dinners in the system
+    }
+  ]
+paths:
+  /dinners:
+    get:
+      summary: Retrieve a list of Dinners.
+      tags:
+        - Dinner
+      description: Retrieve a list of dinners from Dinners API.
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Dinners'
+  /dinners/details/{dinnerId}:
+    get:
+      summary: Retrieve details of selected Dinner.
+      tags:
+        - Dinner
+      description: Retrieve details of selected dinner from Dinners API.
+      parameters:
+        - name: dinnerId
+          required: true
+          in: path
           schema:
-            type: object
-            properties:
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Dinner'
+            type: string
+            description: Dinner id
+            example: "611273f32335860890b58056"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dinner'
+                  
