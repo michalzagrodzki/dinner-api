@@ -102,10 +102,10 @@ tags: [
 paths:
   /orders:
     get:
-      summary: Retrieve a list of Dinners.
+      summary: Retrieve a list of Orders.
       tags:
         - Order
-      description: Retrieve a list of dinners from Dinners API.
+      description: Retrieve a list of orders from Dinners API.
       responses:
         200:
           description: Ok.
@@ -118,20 +118,19 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Order'
-  
   /orders/details/{orderId}:
     get:
-      summary: Retrieve details of selected Dinner.
+      summary: Retrieve details of selected Order.
       tags:
         - Order
-      description: Retrieve details of selected dinner from Dinners API.
+      description: Retrieve details of selected order from Dinners API.
       parameters:
         - name: orderId
           required: true
           in: path
           schema:
             type: string
-            description: Dinner id
+            description: Order id
             example: "6113f20c348351e616b170c4"
       responses:
         200:
