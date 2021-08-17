@@ -7,20 +7,91 @@ components:
         - title
         - dinner_id
         - client_name
-        - client_
+        - client_phone
+        - price
+        - calories
+        - ingredients
       properties:
-        name:
+        title:
           type: string
-          description: The user's name.
-          example: John John
+          description: Order's name.
+          example: "Hot-Dog"
+        dinner_id:
+          type: string
+          description: Dinner's id.
+          example: "611273f32335860890b58056"
+        client_name:
+          type: string
+          description: Name of client making order.
+          example: "John Doe"
+        client_phone:
+          type: string
+          description: Phone number of client making order.
+          example: "123456789"
+        client_email:
+          type: string
+          description: Email of client making order.
+          example: "john@doe.com"
+        price:
+          type: string
+          description: Order's price.
+          example: "12.34"
+        calories:
+          type: number
+          description: Calories of dinner in order.
+          example: "1234"
+        weight:
+          type: number
+          description: Weight of dinner in order.
+          example: "123"
+        ingredients:
+          type: array
+          description: List of ingredient ids in order.
+          example: ["610d16", "a63a0"]
     Order:
       allOf:
         - type: object
           properties:
-            id:
+            _id:
               type: integer
               description: The order ID.
               example: 0
+            title:
+              type: string
+              description: Order's name.
+              example: "Hot-Dog"
+            dinner_id:
+              type: string
+              description: Dinner's id.
+              example: "611273f32335860890b58056"
+            client_name:
+              type: string
+              description: Name of client making order.
+              example: "John Doe"
+            client_phone:
+              type: string
+              description: Phone number of client making order.
+              example: "123456789"
+            client_email:
+              type: string
+              description: Email of client making order.
+              example: "john@doe.com"
+            price:
+              type: string
+              description: Order's price.
+              example: "12.34"
+            calories:
+              type: number
+              description: Calories of dinner in order.
+              example: "1234"
+            weight:
+              type: number
+              description: Weight of dinner in order.
+              example: "123"
+            ingredients:
+              type: array
+              description: List of ingredient ids in order.
+              example: ["610d16", "a63a0"]
         - $ref: '#/components/schemas/Order'
 tags: [
     {
