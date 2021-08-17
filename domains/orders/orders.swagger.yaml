@@ -47,6 +47,9 @@ components:
         ingredients:
           type: array
           description: List of ingredient ids in order.
+          items: {
+                  type: string
+                }
           example: ["610d16", "a63a0"]
     Order:
       allOf:
@@ -91,6 +94,9 @@ components:
             ingredients:
               type: array
               description: List of ingredient ids in order.
+              items: {
+                  type: string
+                }
               example: ["610d16", "a63a0"]
         - $ref: '#/components/schemas/Order'
 tags: [
@@ -118,6 +124,65 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Order'
+    post:
+      summary: Post new Order.
+      tags:
+        - Order
+      description: Post a new order to Dinners API.
+      requestBody: {
+        content: {
+          application/json: {
+            schema: {
+              type: object,
+              properties: {
+                title: { 
+                  description: "Title of new ordered dinner",
+                  type: string
+                },
+                dinner_id: {
+                  description: "Dinner id of new order",
+                  type: string
+                },
+                client_name: {
+                  description: "Name of client who is making order",
+                  type: string
+                },
+                client_phone: {
+                  description: "Phone number of client who is making order",
+                  type: string
+                },
+                client_email: {
+                  description: "Email of client who is making order",
+                  type: string
+                },
+                price: {
+                  description: "Price of new order",
+                  type: string
+                },
+                calories: {
+                  description: "Calories of dinner of new order",
+                  type: number
+                },
+                weight: {
+                  description: "Weight of dinner of new order",
+                  type: number
+                },
+                ingredients: {
+                  description: "List of ingredient ids in new order",
+                  type: array,
+                  items: {
+                    type: string
+                  }
+                }
+              },
+              required: [title, client_name, client_phone, price, calories, ingredients]
+            }
+          }
+        }
+      }
+      responses:
+        200:
+          description: Ok.
   /orders/details/{orderId}:
     get:
       summary: Retrieve details of selected Order.
