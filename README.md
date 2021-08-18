@@ -43,7 +43,7 @@ Dinners:
 ```javascript
 const dinnerSchema = new Schema({
   title: { type: String, required: true },
-  price: { type: String, required: true, min: 0 },
+  price: { type: String, required: true },
   weight: { type: Number, required: true, min: 0 },
   calories: { type: Number, required: true, min: 0 },
   ingredients: [{ type: Schema.Types.ObjectId, ref: "Ingredient" }],
@@ -58,9 +58,9 @@ const orderSchema = new Schema({
   client_name: { type: String, required: true },
   client_phone: { type: String, required: true },
   client_email: { type: String },
-  price: { type: String, required: true, min: 0 },
+  price: { type: String, required: true },
   calories: { type: Number, required: true, min: 0 },
-  weight: { type: Number },
+  weight: { type: Number, min: 0 },
   ingredients: [{ type: Schema.Types.ObjectId, ref: "Ingredient" }],
 });
 ```
@@ -70,7 +70,7 @@ Ingredients:
 ```javascript
 const ingredientSchema = new Schema({
   name: { type: String, required: true },
-  price: { type: String, required: true, min: 0 },
+  price: { type: String, required: true },
   calories: { type: Number, required: true, min: 0 },
 });
 ```
