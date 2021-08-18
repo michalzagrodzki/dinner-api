@@ -76,7 +76,7 @@ paths:
           application/json: {
             schema:
               {
-                $ref: '#/components/schemas/Ingredient'
+                $ref: '#/components/schemas/NewIngredient'
               }
           }
         }
@@ -123,7 +123,7 @@ paths:
           application/json: {
             schema:
               {
-                $ref: '#/components/schemas/Ingredient'
+                $ref: '#/components/schemas/NewIngredient'
               }
           }
         }
