@@ -10,15 +10,15 @@ components:
       properties:
         name:
           type: string
-          description: The ingredient's name.
+          description: Name of new ingredient.
           example: Apple
         price:
           type: string
-          description: The ingredient's price.
+          description: Price of new ingredient.
           example: 2.05
         calories:
           type: number
-          description: The ingredient's calories.
+          description: Calories of new ingredient.
           example: 125
     Ingredient:
       allOf:
@@ -66,6 +66,24 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Ingredient'
+    post:
+      summary: Post new Ingredient.
+      tags:
+        - Ingredient
+      description: Post a new ingredient to Dinners API.
+      requestBody: {
+        content: {
+          application/json: {
+            schema:
+              {
+                $ref: '#/components/schemas/Ingredient'
+              }
+          }
+        }
+      }
+      responses:
+        200:
+          description: Ok.
   /ingredients/details/{ingredientId}:
     get:
       summary: Retrieve details of selected Ingredient.
@@ -87,4 +105,60 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Ingredient'
+    put:
+      summary: Update details of selected Ingredient.
+      tags:
+        - Ingredient
+      description: Update selected ingredient from Dinners API.
+      parameters:
+        - name: ingredientId
+          required: true
+          in: path
+          schema:
+            type: string
+            description: ingredient id
+            example: "610d16b6535ec599fa0a63a0"
+      requestBody: {
+        content: {
+          application/json: {
+            schema:
+              {
+                $ref: '#/components/schemas/Ingredient'
+              }
+          }
+        }
+      }
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated:
+                    type: boolean
+    delete:
+      summary: Delete selected Ingredient.
+      tags:
+        - Ingredient
+      description: Delete selected ingredient from Dinners API.
+      parameters:
+        - name: ingredientId
+          required: true
+          in: path
+          schema:
+            type: string
+            description: ingredient id
+            example: "610d16b6535ec599fa0a63a0"
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted:
+                    type: boolean
                   
