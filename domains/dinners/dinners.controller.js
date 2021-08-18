@@ -33,4 +33,68 @@ dinners.get = async (req, res, next) => {
   }
 };
 
+dinners.post = async (req, res, next) => {
+  try {
+    const { title, price, calories, weight, ingredients } = req.body;
+    const parseCalories = parseInt(calories, 10);
+    const parseWeight = parseInt(weight, 10);
+    const request = {
+      title,
+      price,
+      parseCalories,
+      parseWeight,
+      ingredients,
+    };
+    const response = await service.postDinner(request);
+    res.status(200).json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+dinners.put = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { title, price, calories, weight, ingredients } = req.body;
+    const parseCalories = parseInt(calories, 10);
+    const parseWeight = parseInt(weight, 10);
+    const request = {
+      id,
+      title,
+      price,
+      parseCalories,
+      parseWeight,
+      ingredients,
+    };
+    const serviceResponse = await service.updateDinner(request);
+    const { nModified } = serviceResponse;
+    const parsedResponse = {
+      updated: false,
+    };
+    nModified > 0
+      ? (parsedResponse.updated = true)
+      : (parsedResponse.updated = false);
+    res.status(200).json(parsedResponse);
+  } catch (error) {
+    next(error);
+  }
+};
+
+dinners.delete = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const serviceResponse = await service.deleteDinner(id);
+    const { deletedCount } = serviceResponse;
+    const parsedResponse = {
+      deleted: false,
+    };
+    deletedCount > 0
+      ? (parsedResponse.deleted = true)
+      : (parsedResponse.deleted = false);
+    res.status(200).json(parsedResponse);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = dinners;

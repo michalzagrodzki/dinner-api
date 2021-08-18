@@ -10,10 +10,6 @@ components:
         - calories
         - ingredients
       properties:
-        _id:
-          type: string
-          description: Dinner's id.
-          example: "611273f32335860890b58056"
         title:
           type: string
           description: Dinner's name.
@@ -142,6 +138,24 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Dinners'
+    post:
+      summary: Post new Dinner.
+      tags:
+        - Dinner
+      description: Post a new dinner to Dinners API.
+      requestBody: {
+        content: {
+          application/json: {
+            schema:
+              {
+                $ref: '#/components/schemas/NewDinner'
+              }
+          }
+        }
+      }
+      responses:
+        200:
+          description: Ok.
   /dinners/details/{dinnerId}:
     get:
       summary: Retrieve details of selected Dinner.
@@ -163,4 +177,60 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Dinner'
+    put:
+      summary: Update details of selected Dinner.
+      tags:
+        - Dinner
+      description: Update selected dinner from Dinners API.
+      parameters:
+        - name: dinnerId
+          required: true
+          in: path
+          schema:
+            type: string
+            description: Dinner id
+            example: "611273f32335860890b58056"
+      requestBody: {
+        content: {
+          application/json: {
+            schema:
+              {
+                $ref: '#/components/schemas/NewDinner'
+              }
+          }
+        }
+      }
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated:
+                    type: boolean
+    delete:
+      summary: Delete selected Dinner.
+      tags:
+        - Dinner
+      description: Delete selected dinner from Dinners API.
+      parameters:
+        - name: dinnerId
+          required: true
+          in: path
+          schema:
+            type: string
+            description: Dinner id
+            example: "611273f32335860890b58056"
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted:
+                    type: boolean
                   

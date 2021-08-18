@@ -6,7 +6,15 @@ const dinnersController = require("./dinners.controller");
 // Validators
 const { dinnersValidator } = require("./dinners.middleware");
 
-router.get("/", dinnersController.list);
-router.get("/details/:id", dinnersValidator.get, dinnersController.get);
+router
+  .route("/")
+  .get(dinnersController.list)
+  .post(dinnersValidator.post, dinnersController.post);
+
+router
+  .route("/details/:id")
+  .get(dinnersValidator.get, dinnersController.get)
+  .put(dinnersValidator.post, dinnersController.put)
+  .delete(dinnersValidator.get, dinnersController.delete);
 
 module.exports = router;
