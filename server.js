@@ -39,6 +39,11 @@ function onListening() {
   debug("Listening on " + bind);
 }
 
-server.listen(port);
+server.listen(port, () => {
+  console.log(`[server] Listening on port ${port}`);
+  console.log(
+    `[swagger] API documentation is available here: http://localhost:${port}/api/v1/api-docs/`
+  );
+});
 server.on("error", onError);
 server.on("listening", onListening);
