@@ -54,7 +54,7 @@ orders.post = async (req, res, next) => {
       parseWeight,
       parsedIngredients,
     };
-    const response = service.postOrder(request);
+    const response = await service.postOrder(request);
     res.status(200).json(response);
   } catch (error) {
     next(error);
