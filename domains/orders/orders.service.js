@@ -72,9 +72,6 @@ service.updateOrder = async (payload) => {
     weight,
     ingredients,
   };
-  console.log("updated object");
-  console.log(query);
-  console.log(updateOrderRecord);
   const response = await Order.updateOne(
     query,
     updateOrderRecord,
@@ -82,7 +79,6 @@ service.updateOrder = async (payload) => {
       if (err) return err;
     }
   );
-
   return response;
 };
 
