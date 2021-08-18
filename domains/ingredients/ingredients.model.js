@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const ingredientSchema = new Schema({
   name: { type: String, required: true },
-  price: { type: String, required: true, min: 0 },
+  price: { type: String, required: true },
   calories: { type: Number, required: true, min: 0 },
 });
 
