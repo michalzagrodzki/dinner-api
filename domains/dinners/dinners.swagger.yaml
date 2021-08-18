@@ -113,6 +113,10 @@ components:
                 }
               ]
         - $ref: '#/components/schemas/Dinner'
+    DinnerId:
+      type: string
+      description: Dinner id
+      example: "611273f32335860890b58056"
 tags: [
     {
       name: Dinner,
@@ -167,9 +171,7 @@ paths:
           required: true
           in: path
           schema:
-            type: string
-            description: Dinner id
-            example: "611273f32335860890b58056"
+            $ref: '#/components/schemas/DinnerId'
       responses:
         "200":
           description: OK
@@ -187,9 +189,7 @@ paths:
           required: true
           in: path
           schema:
-            type: string
-            description: Dinner id
-            example: "611273f32335860890b58056"
+            $ref: '#/components/schemas/DinnerId'
       requestBody: {
         content: {
           application/json: {
@@ -220,9 +220,7 @@ paths:
           required: true
           in: path
           schema:
-            type: string
-            description: Dinner id
-            example: "611273f32335860890b58056"
+            $ref: '#/components/schemas/DinnerId'
       responses:
         200:
           description: Ok.

@@ -41,6 +41,10 @@ components:
               description: The ingredient's calories.
               example: 125
         - $ref: '#/components/schemas/Ingredient'
+    IngredientId:
+      type: string
+      description: Ingredient id
+      example: "610d16b6535ec599fa0a63a0blablabla"
 tags: [
     {
       name: Ingredient,
@@ -95,9 +99,7 @@ paths:
           required: true
           in: path
           schema:
-            type: string
-            description: Ingredient id
-            example: "610d16b6535ec599fa0a63a0"
+            $ref: '#/components/schemas/IngredientId'
       responses:
         200:
           description: Ok.
@@ -115,9 +117,7 @@ paths:
           required: true
           in: path
           schema:
-            type: string
-            description: ingredient id
-            example: "610d16b6535ec599fa0a63a0"
+            $ref: '#/components/schemas/IngredientId'
       requestBody: {
         content: {
           application/json: {
@@ -148,9 +148,7 @@ paths:
           required: true
           in: path
           schema:
-            type: string
-            description: ingredient id
-            example: "610d16b6535ec599fa0a63a0"
+            $ref: '#/components/schemas/IngredientId'
       responses:
         200:
           description: Ok.

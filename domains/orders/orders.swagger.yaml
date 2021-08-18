@@ -99,6 +99,10 @@ components:
                 }
               example: ["610d16", "a63a0"]
         - $ref: '#/components/schemas/Order'
+    OrderId:
+      type: string
+      description: Order id
+      example: "611c15984a73d963f00e3adb"
 tags: [
     {
       name: Order,
@@ -194,9 +198,7 @@ paths:
           required: true
           in: path
           schema:
-            type: string
-            description: Order id
-            example: "6113f20c348351e616b170c4"
+            $ref: '#/components/schemas/OrderId'
       responses:
         200:
           description: Ok.
@@ -219,9 +221,7 @@ paths:
           required: true
           in: path
           schema:
-            type: string
-            description: Order id
-            example: "611c15984a73d963f00e3adb"
+            $ref: '#/components/schemas/OrderId'
       requestBody: {
         content: {
           application/json: {
@@ -293,9 +293,7 @@ paths:
           required: true
           in: path
           schema:
-            type: string
-            description: Order id
-            example: "611c15984a73d963f00e3adb"
+            $ref: '#/components/schemas/OrderId'
       responses:
         200:
           description: Ok.
