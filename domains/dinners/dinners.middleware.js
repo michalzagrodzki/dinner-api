@@ -30,16 +30,6 @@ const dinnersValidator = {
       res.status(400).json({ error: error });
     }
   },
-  postCustom: function (req, res, next) {
-    try {
-      if (is.missingBody(req)) throw "Missing request body";
-      if (is.emptyBody(req)) throw "Request body is empty";
-
-      next();
-    } catch (error) {
-      res.status(400).json({ error: error });
-    }
-  },
 };
 
 exports.dinnersValidator = dinnersValidator;
