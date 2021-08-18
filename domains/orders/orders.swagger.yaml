@@ -6,8 +6,8 @@ components:
       required:
         - title
         - dinner_id
-        - client_name
-        - client_phone
+        - name
+        - phone
         - price
         - calories
         - ingredients
@@ -20,15 +20,15 @@ components:
           type: string
           description: Dinner's id.
           example: "611273f32335860890b58056"
-        client_name:
+        name:
           type: string
           description: Name of client making order.
           example: "John Doe"
-        client_phone:
+        phone:
           type: string
           description: Phone number of client making order.
           example: "123456789"
-        client_email:
+        email:
           type: string
           description: Email of client making order.
           example: "john@doe.com"
@@ -67,15 +67,15 @@ components:
               type: string
               description: Dinner's id.
               example: "611273f32335860890b58056"
-            client_name:
+            name:
               type: string
               description: Name of client making order.
               example: "John Doe"
-            client_phone:
+            phone:
               type: string
               description: Phone number of client making order.
               example: "123456789"
-            client_email:
+            email:
               type: string
               description: Email of client making order.
               example: "john@doe.com"
@@ -143,15 +143,15 @@ paths:
                   description: "Dinner id of new order",
                   type: string
                 },
-                client_name: {
+                name: {
                   description: "Name of client who is making order",
                   type: string
                 },
-                client_phone: {
+                phone: {
                   description: "Phone number of client who is making order",
                   type: string
                 },
-                client_email: {
+                email: {
                   description: "Email of client who is making order",
                   type: string
                 },
@@ -175,7 +175,7 @@ paths:
                   }
                 }
               },
-              required: [title, client_name, client_phone, price, calories, ingredients]
+              required: [title, name, phone, price, calories, ingredients]
             }
           }
         }
@@ -236,15 +236,15 @@ paths:
                   description: "Dinner id of updated order",
                   type: string
                 },
-                client_name: {
+                name: {
                   description: "Name of client who is making order",
                   type: string
                 },
-                client_phone: {
+                phone: {
                   description: "Phone number of client who is making order",
                   type: string
                 },
-                client_email: {
+                email: {
                   description: "Email of client who is making order",
                   type: string
                 },
@@ -268,7 +268,7 @@ paths:
                   }
                 }
               },
-              required: [title, client_name, client_phone, price, calories, ingredients]
+              required: [title, name, phone, price, calories, ingredients]
             }
           }
         }
