@@ -41,15 +41,9 @@ service.postOrder = async (payload) => {
     weight,
     ingredients,
   });
-  await orderRecord.save(function (err) {
+  const response = await orderRecord.save(function (err) {
     if (err) return err;
   });
-  const response = {
-    client_name,
-    client_phone,
-    client_email,
-  };
-
   return response;
 };
 
